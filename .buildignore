@@ -1,0 +1,50 @@
+# ExtraChill AI Client - Build Exclusions
+# Files and directories to exclude from production builds
+
+# Development files
+.buildignore
+build.sh
+composer.lock
+.phpcs.xml.dist
+phpunit.xml
+phpunit.xml.dist
+.phpstan.neon
+.phpstan.neon.dist
+
+# Documentation
+README.md
+CLAUDE.md
+CONTRIBUTING.md
+CHANGELOG.md
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# IDE and editor files
+.vscode
+.idea
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# Testing
+tests
+phpunit.xml
+.phpunit.result.cache
+
+# Build artifacts
+dist
+node_modules
+
+# OS files
+.DS_Store
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Composer development dependencies (handled by composer install --no-dev)
+# vendor/* files excluded by build script
