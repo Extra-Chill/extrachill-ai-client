@@ -19,15 +19,9 @@
         "gemini",
         "extrachill"
     ],
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../../../ai-http-client"
-        }
-    ],
     "require": {
         "php": ">=7.4",
-        "chubes4/ai-http-client": "dev-main"
+        "chubes4/ai-http-client": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0 || ^10.0",

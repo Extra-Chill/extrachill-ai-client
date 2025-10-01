@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d46fc0510455474c4ac541867fbc0881",
+    "content-hash": "1b6febdf3e1ce9433dac83e4a5264c6b",
     "packages": [
         {
             "name": "chubes4/ai-http-client",
-            "version": "dev-main",
+            "version": "v1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chubes4/ai-http-client.git",
+                "reference": "3d3a2bfacc2c6c775b050e445f126995af88bdba"
+            },
             "dist": {
-                "type": "path",
-                "url": "../../../ai-http-client",
-                "reference": "669b43e0c298e41debec4026c409ba7f3dc59974"
+                "type": "zip",
+                "url": "https://api.github.com/repos/chubes4/ai-http-client/zipball/3d3a2bfacc2c6c775b050e445f126995af88bdba",
+                "reference": "3d3a2bfacc2c6c775b050e445f126995af88bdba",
+                "shasum": ""
             },
             "require": {
                 "php": ">=7.4"
@@ -23,30 +29,14 @@
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "src/"
-                ],
                 "files": [
                     "ai-http-client.php"
+                ],
+                "classmap": [
+                    "src/"
                 ]
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "AIHttpClient\\Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "phpunit"
-                ],
-                "analyse": [
-                    "phpstan analyse src --level=5"
-                ],
-                "check": [
-                    "@test",
-                    "@analyse"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "GPL-3.0-or-later"
             ],
@@ -60,23 +50,21 @@
             "description": "A professional WordPress library for unified AI provider communication. Supports OpenAI, Anthropic, Google Gemini, Grok, and OpenRouter with standardized request/response formats.",
             "homepage": "https://github.com/chubes4/ai-http-client",
             "keywords": [
+                "Gemini",
+                "OpenRouter",
                 "ai",
                 "anthropic",
                 "artificial-intelligence",
-                "gemini",
                 "grok",
                 "http-client",
                 "openai",
-                "openrouter",
                 "wordpress"
             ],
             "support": {
                 "issues": "https://github.com/chubes4/ai-http-client/issues",
                 "source": "https://github.com/chubes4/ai-http-client"
             },
-            "transport-options": {
-                "relative": true
-            }
+            "time": "2025-09-30T22:27:05+00:00"
         }
     ],
     "packages-dev": [
@@ -2231,9 +2219,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "chubes4/ai-http-client": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

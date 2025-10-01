@@ -190,7 +190,7 @@ composer run analyse
 1. Extracts version from plugin header
 2. Runs `composer install --no-dev` for production dependencies
 3. Copies essential files (excludes dev files via `.buildignore`)
-4. Creates ZIP: `dist/extrachill-ai-client-{version}.zip`
+4. Creates `/build/extrachill-ai-client/` directory and `/build/extrachill-ai-client.zip` file
 5. Restores development dependencies
 
 ## File Structure
@@ -264,16 +264,10 @@ composer run check
 
 ## Multisite Network Integration
 
-### Blog ID Architecture
-The ExtraChill Platform uses hardcoded blog IDs for performance:
-- **Blog ID 1**: extrachill.com (main site)
-- **Blog ID 2**: community.extrachill.com (community forums)
-- **Blog ID 3**: shop.extrachill.com (e-commerce)
-- **Blog ID 4**: app.extrachill.com (mobile API - planned)
-
 ### Network-Wide Availability
 - Plugin must be network-activated
-- API keys accessible from all 4 sites automatically
+- API keys accessible from all seven sites in the network automatically
+- Domain-based site resolution via `get_blog_id_from_url()` with WordPress blog-id-cache
 - No per-site configuration needed
 
 ## Future Enhancements

@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: ExtraChill AI Client
+ * Plugin Name: Extra Chill AI Client
  * Plugin URI: https://extrachill.com
  * Description: Network-activated AI provider library for ExtraChill Platform. Provides unified AI integration across OpenAI, Anthropic, Google Gemini, Grok, and OpenRouter.
  * Version: 1.0.0
