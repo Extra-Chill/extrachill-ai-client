@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function extrachill_ai_client_add_network_admin_menu() {
 	add_submenu_page(
-		'settings.php',
+		'extrachill-multisite',
 		__( 'AI Client Settings', 'extrachill-ai-client' ),
 		__( 'AI Client', 'extrachill-ai-client' ),
 		'manage_network_options',

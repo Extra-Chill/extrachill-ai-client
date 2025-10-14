@@ -27,7 +27,7 @@ Network-activated WordPress plugin providing centralized AI provider integration
 ```json
 {
     "require": {
-        "chubes4/ai-http-client": "dev-main"
+        "chubes4/ai-http-client": "*"
     },
     "repositories": [
         {
@@ -39,10 +39,11 @@ Network-activated WordPress plugin providing centralized AI provider integration
 ```
 
 **Path Repository Approach:**
-- Uses local ai-http-client directory as Composer dependency
-- Symlinked at `vendor/chubes4/ai-http-client`
+- Uses local ai-http-client directory as Composer dependency via path repository
+- Installed at `vendor/chubes4/ai-http-client` after running `composer install`
 - Always uses latest local code (no version management for development)
-- Run `composer update chubes4/ai-http-client` to pick up library changes
+- Run `composer install` to install the dependency initially
+- Run `composer update chubes4/ai-http-client` to pick up library changes after updates
 
 ### AI HTTP Client Library (v1.1.3+)
 - **Multisite Support**: Uses `get_site_option()` / `update_site_option()` for network-wide storage
@@ -164,16 +165,37 @@ echo '</form>';
 - Configures Gemini Pro in artist profile settings
 - Generates artist bios and content suggestions
 
+## Setup Requirements
+
+### Initial Setup
+Before using the plugin, the ai-http-client library dependency must be installed:
+
+```bash
+cd extrachill-ai-client
+
+# Install dependencies (includes ai-http-client library)
+composer install
+```
+
+**Verification:**
+- Check that `vendor/chubes4/ai-http-client/` directory exists
+- Verify `vendor/autoload.php` file is present
+- Plugin will automatically load the library via line 27-29 of main plugin file
+
+**Path Repository Requirements:**
+- The `../../../ai-http-client` directory must exist at the relative path specified in `composer.json`
+- This is the centralized ai-http-client library location in the developer environment
+
 ## Development Workflow
 
 ### Local Development
 ```bash
 cd extrachill-ai-client
 
-# Install dependencies
+# Install dependencies (first time setup)
 composer install
 
-# Update ai-http-client library
+# Update ai-http-client library (after library changes)
 composer update chubes4/ai-http-client
 
 # Run code quality checks
@@ -186,12 +208,19 @@ composer run analyse
 ./build.sh
 ```
 
+**Build Script**: Symlinked to universal build script at `../../.github/build.sh`
+
 **Build Process:**
-1. Extracts version from plugin header
-2. Runs `composer install --no-dev` for production dependencies
-3. Copies essential files (excludes dev files via `.buildignore`)
-4. Creates `/build/extrachill-ai-client/` directory and `/build/extrachill-ai-client.zip` file
-5. Restores development dependencies
+1. Auto-detects plugin from header `Plugin Name:` field
+2. Extracts version from plugin header for validation and logging
+3. Runs `composer install --no-dev` for production dependencies only
+4. Copies essential files using rsync with `.buildignore` exclusions
+5. Validates build structure (ensures plugin file exists)
+6. Creates `/build/extrachill-ai-client/` clean directory
+7. Creates `/build/extrachill-ai-client.zip` non-versioned deployment package
+8. Restores development dependencies with `composer install`
+
+**Output**: Both `/build/extrachill-ai-client/` directory AND `/build/extrachill-ai-client.zip` file exist simultaneously
 
 ## File Structure
 
@@ -202,7 +231,7 @@ extrachill-ai-client/
 ├── inc/
 │   └── admin-settings.php       # Network admin settings page
 ├── vendor/                      # Composer dependencies (symlinked ai-http-client)
-├── build.sh                     # Production build script
+├── build.sh -> ../../.github/build.sh  # Symlink to universal build script
 ├── .buildignore                 # Files excluded from production builds
 └── CLAUDE.md                    # This documentation file
 ```
@@ -240,10 +269,10 @@ extrachill-ai-client/
 ## Common Development Commands
 
 ```bash
-# Install dependencies
+# Install dependencies (includes ai-http-client library via path repository)
 composer install
 
-# Update ai-http-client library to latest
+# Update ai-http-client library to latest (after library changes)
 composer update chubes4/ai-http-client
 
 # Run PHP linting
@@ -262,11 +291,17 @@ composer run check
 ./build.sh
 ```
 
+**Note on Path Repository:**
+- The `composer.json` uses a path repository pointing to `../../../ai-http-client`
+- This assumes the ai-http-client library exists at that relative path
+- First-time setup requires running `composer install` to create the `vendor/chubes4/ai-http-client` symlink
+- After library updates, run `composer update chubes4/ai-http-client` to pick up changes
+
 ## Multisite Network Integration
 
 ### Network-Wide Availability
 - Plugin must be network-activated
-- API keys accessible from all seven sites in the network automatically
+- API keys accessible from all eight sites in the network automatically
 - Domain-based site resolution via `get_blog_id_from_url()` with WordPress blog-id-cache
 - No per-site configuration needed
 
